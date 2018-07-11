@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Configure Image Viewer</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link rel="stylesheet" href="./css/material-components-web.css">
+    <link rel="stylesheet" href="./css/jquery.material-color-picker.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="./js/async.min.js"></script>
+    <script src="./js/material-components-web.js"></script>
+    <script src="./js/jquery.material-color-picker.min.js"></script>
+    <script src="./js/tableau-extensions-0.16.0.min.js"></script>
+    <script src="./js/configure.js"></script>
+    </head>
+    <body class="mdc-typography">
+      <nav id="basic-tab-bar" class="mdc-tab-bar">
+        <a class="mdc-tab mdc-tab--active" id="configure">Configure
+        <span class="mdc-tab__indicator"></span></a>
+        <a class="mdc-tab" id="options">About
+        <span class="mdc-tab__indicator"></span></a>
+      </nav>
+      <div class="mdc-card mdc-card--outlined configure-card">
+        <div class="card-content">
+          <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__inner">
+              <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <label class="configSection">Mode</label>
+              </div>
+              <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <div class="mdc-form-field">
+                  <div class="mdc-select" id="mode">
+                    <select class="mdc-select__native-control" id="modeSelect">
+                      <option value="select" selected>Mark Selection</option>
+                      <option value="filter">Filter Changed</option>
+                    </select>
+                    <label class="mdc-floating-label">Trigger on</label>
+                    <div class="mdc-line-ripple"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mdc-layout-grid__inner">
+              <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <label class="configSection">Source</label>
+              </div>
+              <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <div class="mdc-form-field">
+                  <div class="mdc-select" id="sourceSheet">
+                    <select class="mdc-select__native-control" id="sourceSheetSelect">
+                      <option value="" disabled selected></option>
+                    </select>
+                    <label class="mdc-floating-label">Source Sheet</label>
+                    <div class="mdc-line-ripple"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <div class="mdc-form-field">
+                  <div class="mdc-select" id="sourceUrl" data-mdc-auto-init="MDCSelect">
+                    <select class="mdc-select__native-control" id="sourceUrlSelect" disabled>
+                      <option value="" disabled selected></option>
+                    </select>
+                    <label class="mdc-floating-label">Image URL Dimension</label>
+                    <div class="mdc-line-ripple"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <span id="urlPreview"></span>
+              </div>
+            </div>
+            <div class="mdc-layout-grid__inner">
+              <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <label class="configSection">Display</label>
+              </div>
+              <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <div class="mdc-form-field">
+                  <div class="mdc-select" id="rotateImage" data-mdc-auto-init="MDCSelect">
+                    <select class="mdc-select__native-control" id="rotateImageSelect">
+                      <option value="0" selected>0&#176;</option>
+                      <option value="90" selected>90&#176;</option>
+                      <option value="180" selected>180&#176;</option>
+                      <option value="270" selected>270&#176;</option>
+                    </select>
+                    <label class="mdc-floating-label">Auto Rotate Image</label>
+                    <div class="mdc-line-ripple"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12" style="height:55px;margin-bottom: 0;">
+                <div class="mdc-form-field" style="height:55px;">
+                  <div class="mdc-switch">
+                    <input type="checkbox" id="toolbarOpt" class="mdc-switch__native-control" role="switch" checked>
+                    <div class="mdc-switch__background">
+                      <div class="mdc-switch__knob"></div>
+                    </div>
+                  </div>
+                  <label for="toolbarOpt">Show Toolbar</label>
+                </div>
+                <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon" id="toolbarColourField">
+                  <i class="material-icons mdc-text-field__icon toolbar-colour" tabindex="0" role="button">palette</i>
+                  <input type="text" id="toolbarColour" class="mdc-text-field__input" value="rgba(0, 0, 0, .5)">
+                  <label for="toolbarColour" class="mdc-floating-label" style="bottom: 7px;">Toolbar Colour</label>
+                  <div class="mdc-line-ripple"></div>
+                </div>
+              </div>
+              <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12" style="height:55px;margin-bottom: 0;">
+                <div class="mdc-form-field" style="height:55px;">
+                  <div class="mdc-switch">
+                    <input type="checkbox" id="navbarOpt" class="mdc-switch__native-control" role="switch" checked>
+                    <div class="mdc-switch__background">
+                      <div class="mdc-switch__knob"></div>
+                    </div>
+                  </div>
+                  <label for="navbarOpt">Show Navbar</label>
+                </div>
+                <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon" id ="navbarColourField">
+                  <i class="material-icons mdc-text-field__icon navbar-colour" tabindex="0" role="button">palette</i>
+                  <input type="text" id="navbarColour" class="mdc-text-field__input" value="rgba(0, 0, 0, .5)">
+                  <label for="navbarColour" class="mdc-floating-label" style="bottom: 7px;">Navbar Colour</label>
+                  <div class="mdc-line-ripple"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mdc-card__actions mdc-card__actions--full-bleed">
+          <div class="mdc-card__action-buttons">
+            <button class="mdc-button mdc-card__action mdc-card__action--button mdc-theme--secondary resetBtn">Reset</button>
+          </div>
+        </div>
+      </div>
+      <div class="mdc-card mdc-card--outlined options-card" style="display: none;">
+        <div class="card-content">
+          <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__inner">
+              <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <label class="configSection">About Image Viewer</label>
+                <p>Implementation of Viewer.js by Chen Fengyuan under MIT license.
+              </div>
+              <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <p>Created by Craig Bloodworth</p>
+                <img src="img/logo.png" style="width: 250px;"/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mdc-card__actions mdc-card__actions--full-bleed">
+          <div class="mdc-card__action-buttons">
+          </div>
+        </div>
+      </div>
+    </body>
+</html>

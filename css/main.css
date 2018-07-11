@@ -1,0 +1,150 @@
+body {
+  --mdc-theme-primary: rgb(52,152,219);
+  --mdc-theme-secondary: rgb(45, 204, 151);
+  --mdc-theme-on-primary: #fff;
+  --mdc-theme-on-secondary: #fff;
+  --mdc-theme-background: #fff;
+  --mdc-theme-text-primary-on-background: #000;
+  --mdc-typography-base: "Benton Sans", Arial, Helvetica, sans-serif;
+  background-color: var(--mdc-theme-background);
+  font-family: "Benton Sans", Arial, Helvetica, sans-serif !important;
+  font-size: 12px;
+  height: 100vh;
+  overflow-y: none;
+}
+
+.mdc-select {
+  min-width: 200px;
+  margin-left: 10px;
+  height: 43px;
+}
+
+.mdc-floating-label {
+  font-family: "Benton Sans", Arial, Helvetica, sans-serif !important;
+  font-size: 12px;
+}
+
+.mdc-floating-label--float-above {
+  color: #666666 !important;
+}
+
+.mdc-text-field__input {
+  height: auto !important;
+  font-family: "Benton Sans", Arial, Helvetica, sans-serif !important;
+  font-size: 12px;
+}
+
+.about-card {
+  padding: 20px;
+}
+
+.mdc-typography {
+  margin: 0;
+}
+
+.mdc-typography, .mdc-typography--headline5 {
+  font-family: "Benton Sans", Arial, Helvetica, sans-serif !important;
+}
+
+.configure-card {
+  width: 100%;
+}
+
+.card-content {
+  height: calc(100vh - 100px);
+  overflow-y: auto;
+}
+
+.mdc-layout-grid__inner {
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.mdc-layout-grid__cell {
+  margin-top: 0px;
+}
+
+label.configSection {
+  font-size: 12px;
+  font-family: 'Benton Sans', Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.8);
+  line-height: normal;
+  cursor: default;
+}
+
+.mdc-tab {
+  font-size: 12px;
+}
+
+.mdc-tab-bar {
+  background-color: rgb(245,245,245);
+  font-size: 12px;
+  height: 39px;
+  width: 100%;
+}
+
+.mdc-tab__indicator {
+  background-color: var(--mdc-theme-primary);
+}
+
+.mdc-card__actions {
+  bottom: 0px;
+  position: absolute;
+  right: 10px;
+}
+
+.mdc-card--outlined {
+  border: 0;
+}
+
+.mdc-card__media {
+  background: var(--mdc-theme-primary);
+  color: var(--mdc-theme-on-primary);
+  height: 100px;
+}
+
+.mdc-card__media-content {
+  position: absolute;
+  top: auto;
+  right: auto;
+  bottom: 10px;
+  left: 10px;
+}
+
+.mdc-list {
+  font-size: 12px;
+}
+
+#images {
+  display: none;
+}
+
+.viewer-button {
+  display: none;
+}
+
+#urlPreview {
+  color: #666666;
+  font-weight: 400;
+  padding-left: 10px;
+  position: relative;
+  top: -7px;
+  font-size: 7pt;
+  letter-spacing: 0.00937em;
+  height: 15px;
+}
+
+#toolbarColourField,#navbarColourField {
+  margin: 0px;
+  height: 40px;
+}
+
+#toolbarColourField input, #navbarColourField input {
+  padding-bottom: 2px;
+  padding-top: 2px;
+}
+
+#toolbarColourField i, #navbarColourField i {
+  bottom: 2px;
+}

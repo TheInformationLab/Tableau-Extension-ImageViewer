@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest manifest-version="0.1" xmlns="http://www.tableau.com/xml/extension_manifest">
+  <dashboard-extension id="com.theinformationlab.extensions.imageviewer" extension-version="1.0.0">
+    <default-locale>en_US</default-locale>
+    <name resource-id="name"/>
+    <description>Data-driven Image Viewer for Tableau Dashboards</description>
+    <author name="Craig Bloodworth" email="craig.bloodworth@theinformationlab.co.uk" organization="The Information Lab" website="https://www.theinformationlab.co.uk"/>
+    <min-api-version>0.8</min-api-version>
+    <source-location>
+      <url>https://imageviewerextension.theinformationlab.io/viewer.html</url>
+      <!-- <url>http://localhost:8000/viewer.html</url> -->
+    </source-location>
+    <icon>iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAQAAAD41aSMAAAEGUlEQVR4Ae3aOW9cZRSA4beA4JUOCGUyTgo2C4EA/wfaRE7FZGF+SqRYqRCLPWNFw/JDEJulaVAiAtRs0eCUtsNMiksVaeQPlDtzE59753vfU/sr/ETnONLlqWRmZmZmZmZmZmZmZrbKJXoMuM+YouEzZp8BPTZZpRGd5xZHFHM4h+yyRq1b5CYPKeZ4xmyxQE07x08UGcxtWtSwN/mbIpMZsk7NOhf76w8gaFGjlnJYPskiWqA23aTIcG5Qk87zMEuAcV3W0C2KTKcH8T3PUbYAB6wQ3iWKjOci4fWyBtgmvEHWAHuEdz9rgCHhjbMGGBFekfmEJ4AAAggggAACCCCAAAIIIIAAAggggAACCCCAANV/gQIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAghwwiOAAAIIIIAAO3QFiJvvOcUpfhAgZv7kNAAv85cAJz8j3uNRG4wEOOm5xmQdAU52PuN4XQFObr7jWY711I5xkgB/cJqkcsdYgD79ii/8w7sklTvGAtxliSXuVnrjKknljrEAh7wCwKsczvzGpySVPcYCtHnU5Rlf+DY9vmWPsQB9Jvt8puP7Ekn/d4wFSLf/ZMv8PPXxfYeybTASINn+E81yCa4wTR0Bku2fdIWi9HzCtHUFSLZ/0hclX/gmPb7ljrEA6fafbJlfSrzwe3p8yx5jAZLtf6zXOKp+fMsf4/wA2jyuq4954TJV6uQN0CdpykvwMVXrZgqQbv9Sl6D68SU9xrkApNu/bK9z9J/H90UqlBzjzADaTNO15Ocf8DZJAce4oQB9pu3LYy98wJOskwdAuv3Lt8KvEy98xJOumwlAuv1nuARf8wxpMce4gQBtZu1DCgp+4wXSoo5x4wD6VOkrHvAWaVHHuAEA6fav0grv8zTrNB+g2vaPrzvPAG3iq36MGwvQpxmlx7ihAOn2b0objJoPkG7/JtWZN4A2TavbfICA7R9wjOMB4rd/6DGOB4jf/oHHuAEAbZpcp/4AY4qMZxQPsJ81wDAeYJA1wF48QC9rgO14gM2sAS7EA6xySJHpHLAcDwC72QLsQB0A1jL9U3TE2SCApK0sAa5DXQAWuUOR2fzIc4EASS2GFBnNPc5AKEDSekYE93gDwgGSWtzOZPmcgToCwAI35vwvohHX090fCpDUosfBnP63a4ezpMUDJK1wkW32GDKag3/zQ/bY5gLLAIEAJkAjE0AAE0AAE0AAE0AAE0AAE0AAE0AA8/v+gvD2BYhtIEBsPQFi2xQgtlUOBYhtV4DY1hgLENuWALEtckeA2FoMBYhtPYBAgNjv+wWI/75fgPjv+wWo8H2/AGZmZmZmZmZmZmZmZv8C40j8Li9Kn1oAAAAASUVORK5CYII=</icon>
+    <context-menu>
+      <configure-context-menu-item />
+    </context-menu>
+  </dashboard-extension>
+  <resources>
+    <resource id="name">
+      <text locale="en_US">Image Viewer</text>
+    </resource>
+  </resources>
+</manifest>

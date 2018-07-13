@@ -10,7 +10,6 @@ func.saveSettings = function(meta, callback) {
 }
 
 func.getSettings = function(callback) {
-  console.log(tableau.extensions.settings.get(sheetSettingsKey));
   if (tableau.extensions.settings.get(sheetSettingsKey)) {
     var settings = JSON.parse(tableau.extensions.settings.get(sheetSettingsKey));
     callback(settings);
@@ -21,14 +20,15 @@ func.getSettings = function(callback) {
 
 func.currentConfig = function(callback) {
   var config = {};
+  config.seenConfig = true;
   config.mode = $('#modeSelect').val();
-  config.sheetIndex = $('#sourceSheetSelect').val();
-  config.urlIndex = $('#sourceUrlSelect').val();
+  config.sheetIndex = parseInt($('#sourceSheetSelect').val());
+  config.urlIndex = parseInt($('#sourceUrlSelect').val());
   config.toolbarOpt = document.getElementById('toolbarOpt').checked;
   config.navbarOpt = document.getElementById('navbarOpt').checked;
   config.toolbarColour = $('#toolbarColour').val();
   config.navbarColour = $('#navbarColour').val();
-  config.rotateImage = $('#rotateImageSelect').val();
+  config.rotateImage = parseInt($('#rotateImageSelect').val());
   if (config.toolbarOpt) {
     $('#toolbarColourField').show();
   } else {
@@ -45,6 +45,11 @@ func.currentConfig = function(callback) {
 func.initialize = function(callback) {
   // var settings = JSON.parse(tableau.extensions.settings.get(sheetSettingsKey));
   // console.log("Current Config", settings)
+  // func.currentConfig(function(config) {
+  //   func.saveSettings(config, function(settings) {
+  //
+  //   })
+  // });
   const urlSelect = new mdc.select.MDCSelect(document.querySelector('#sourceUrl'));
   const modeSelect = new mdc.select.MDCSelect(document.querySelector('#mode'));
   modeSelect.listen('change', () => {
@@ -124,13 +129,17 @@ var configureUI = function() {
     }
     if (settings.toolbarOpt) {
       $('#toolbarOpt').attr('checked', true);
+      $('#toolbarColourField').show();
     } else {
       $('#toolbarOpt').attr('checked', false);
+      $('#toolbarColourField').hide();
     }
     if (settings.navbarOpt) {
       $('#navbarOpt').attr('checked', true);
+      $('#navbarColourField').show();
     } else {
       $('#navbarOpt').attr('checked', false);
+      $('#navbarColourField').hide();
     }
     if (settings.rotateImage) {
       $('#rotateImageSelect').val(settings.rotateImage);
@@ -145,11 +154,12 @@ var configureUI = function() {
       $('#navbarColour').val(settings.navbarColour);
       $('.mdc-text-field__icon.navbar-colour').css('color',settings.navbarColour);
     }
-    if (settings.sheetIndex) {
+    console.log(settings.sheetIndex)
+    if (settings.sheetIndex >= 0) {
       $('#sourceSheetSelect').val(settings.sheetIndex);
       $('#sourceSheetSelect').parent().find('label').addClass('mdc-floating-label--float-above');
       buildDimensionSelect(function(data) {
-        if (settings.urlIndex) {
+        if (settings.urlIndex >= 0) {
           document.querySelector('#sourceUrl').MDCSelect.disabled = false;
           $('#sourceUrlSelect').removeAttr("disabled");
           $('#sourceUrlSelect').val(settings.urlIndex);
@@ -251,6 +261,7 @@ $(document).ready(function () {
 
 function resetSettings() {
   var config = {};
+  config.seenConfig = true;
   config.mode = "select";
   config.sheetIndex = 0;
   config.urlIndex = 0;

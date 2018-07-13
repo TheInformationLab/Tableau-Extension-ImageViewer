@@ -18,19 +18,23 @@ $(document).ready(function () {
 
     tableau.extensions.settings.addEventListener(tableau.TableauEventType.SettingsChanged, (settingsEvent) => {
       console.log("settings changed")
-      setConfig(function(validConfig) {
+      setConfig(function(seenConfig, validConfig) {
         if (validConfig) {
           initializeViewer(true);
+        } else {
+          $('#invalidConfig').show();
         }
       });
     });
-    setConfig(function(validConfig) {
+    setConfig(function(seenConfig, validConfig) {
       if (validConfig) {
         initializeViewer(true);
-      } else {
+      } else if (!seenConfig) {
+        console.log("Seen Config:", seenConfig);
         configure();
+      } else {
+        $('#invalidConfig').show();
       }
-
     });
   });
 
@@ -38,8 +42,11 @@ $(document).ready(function () {
 
 var setConfig = function (callback) {
   var validConfig = false;
+  var seenConfig = false;
   if(tableau.extensions.settings.get(sheetSettingsKey)) {
     var settings = JSON.parse(tableau.extensions.settings.get(sheetSettingsKey));
+    console.log("Got Settings", settings);
+    seenConfig = settings.seenConfig;
     mode = settings.mode;
     sheetIndex = settings.sheetIndex;
     urlIndex = settings.urlIndex;
@@ -48,11 +55,11 @@ var setConfig = function (callback) {
     toolbarColour = settings.toolbarColour;
     navbarColour = settings.navbarColour;
     rotateImage = settings.rotateImage;
-    if (settings.mode && settings.sheetIndex && settings.urlIndex) {
+    if (settings.mode && settings.sheetIndex >= 0 && settings.urlIndex >= 0) {
       validConfig = true;
     }
   }
-  callback(validConfig);
+  callback(seenConfig, validConfig);
 }
 
 var initializeViewer = function (refresh) {
@@ -81,10 +88,18 @@ var initializeViewer = function (refresh) {
 
 var getSelectedMarkData = function () {
   console.log("getSelectedMarkData");
-  sheet.getSelectedMarksAsync().then((data) => {
-    if (data) {
-      showImages(data.data[0].data);
+  sheet.getSelectedMarksAsync().then((selected) => {
+    if (selected.data[0].data.length > 0) {
+      sheet.getSummaryDataAsync({ignoreSelection: false}).then((data) => {
+        console.log(data);
+        if (data) {
+          showImages(data.data);
+        }
+      });
+    } else if (viewer) {
+      viewer.destroy();
     }
+    $('#images').html('');
   });
 }
 
@@ -152,11 +167,23 @@ var showImages = function(dataset) {
 function configure() {
   const popupUrl = `${window.location.origin}/configure.html`;
   tableau.extensions.ui.displayDialogAsync(popupUrl, 'Payload Message', { height: 550, width: 500 }).then((closePayload) => {
-
+    setConfig(function(seenConfig, validConfig) {
+      if (validConfig) {
+        initializeViewer(true);
+      } else {
+        $('#invalidConfig').show();
+      }
+    });
   }).catch((error) => {
     switch(error.errorCode) {
       case tableau.ErrorCodes.DialogClosedByUser:
-        console.log("Dialog was closed by user");
+        setConfig(function(seenConfig, validConfig) {
+          if (validConfig) {
+            initializeViewer(true);
+          } else {
+            $('#invalidConfig').show();
+          }
+        });
         break;
       default:
         console.error(error.message);

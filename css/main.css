@@ -6,7 +6,7 @@ body {
   --mdc-theme-background: #fff;
   --mdc-theme-text-primary-on-background: #000;
   --mdc-typography-base: "Benton Sans", Arial, Helvetica, sans-serif;
-  background-color: var(--mdc-theme-background);
+  background-color: rgba(0,0,0,0);
   font-family: "Benton Sans", Arial, Helvetica, sans-serif !important;
   font-size: 12px;
   height: 100vh;
@@ -17,6 +17,10 @@ body {
   min-width: 200px;
   margin-left: 10px;
   height: 43px;
+}
+
+.mdc-select__native-control {
+  line-height: 1rem;
 }
 
 .mdc-floating-label {
